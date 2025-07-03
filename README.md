@@ -12,3 +12,9 @@ Agregada base de datos con relación para posteriormente rellenar y tener con qu
 
 - Terminado el modelo de datos (simple)
 - Inicio creación de api y pendiente implementación de recolección de datos de varaias tablas
+
+## 3 / 7 / 2025 5:56 p.m.
+
+- Implementacion de todas las tarjetas informativas (en modelo)
+- Agregada una relacion entre tablas para futuras pruebas
+- pequeño avance en la api
