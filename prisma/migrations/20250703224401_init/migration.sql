@@ -1,10 +1,9 @@
 -- CreateTable
 CREATE TABLE "User" (
+    "id" SERIAL NOT NULL,
     "cc" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
-    CONSTRAINT "User_pkey" PRIMARY KEY ("cc")
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 -- CreateTable
@@ -52,7 +51,8 @@ CREATE TABLE "Service" (
     "id" SERIAL NOT NULL,
     "product" TEXT NOT NULL,
     "medium" TEXT NOT NULL,
-    "user" TEXT NOT NULL,
+    "clientt" TEXT NOT NULL,
+    "user" INTEGER NOT NULL,
     "doneAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Service_pkey" PRIMARY KEY ("id")
@@ -72,7 +72,13 @@ CREATE TABLE "Feedback" (
 );
 
 -- CreateIndex
+CREATE UNIQUE INDEX "User_id_key" ON "User"("id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_cc_key" ON "User"("cc");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "MonetaryTransactional_category_key" ON "MonetaryTransactional"("category");
 
 -- AddForeignKey
-ALTER TABLE "Service" ADD CONSTRAINT "Service_user_fkey" FOREIGN KEY ("user") REFERENCES "User"("cc") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Service" ADD CONSTRAINT "Service_user_fkey" FOREIGN KEY ("user") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

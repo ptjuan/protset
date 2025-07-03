@@ -15,7 +15,8 @@ datasource db {
 }
 
 model User {
-  cc String @id 
+  id Int @default(autoincrement()) @unique
+  cc String @unique
   name String
   createdAt DateTime @default(now())
   
@@ -55,8 +56,9 @@ model Service {
   id Int @id @default(autoincrement())
   product String
   medium String 
-  user String
-  takenBy User @relation(fields: [user], references: [cc])
+  clientt String
+  user Int
+  takenBy User @relation(fields: [user], references: [id])
   doneAt DateTime @default(now()) 
 }
 
