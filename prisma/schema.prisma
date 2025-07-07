@@ -19,12 +19,11 @@ model User {
   cc String @unique
   name String
   createdAt DateTime @default(now())
-  
   Service Service[]
 }
 
 model Client  {
-  cc String @id
+  cc String @unique
   name String
   createdAt DateTime @default(now())
 }
@@ -32,6 +31,7 @@ model Client  {
 
 model Informative {
   id Int @id @default(autoincrement())
+  type String
   product String
   medium String
   doneAt DateTime @default(now())
@@ -39,6 +39,7 @@ model Informative {
 
 model NonMonetaryTransactional {
   id Int @id @default(autoincrement())
+  type String
   product String
   medium String
   doneAt DateTime @default(now())
@@ -46,25 +47,28 @@ model NonMonetaryTransactional {
 
 model MonetaryTransactional {
   id Int @id @default(autoincrement())
+  type String
   product String
   medium String
-  category String @unique 
+  category String
   doneAt DateTime @default(now())
 }
 
 model Service {
   id Int @id @default(autoincrement())
+  type String
   product String
   medium String 
   clientt String
   user Int
   takenBy User @relation(fields: [user], references: [id])
   doneAt DateTime @default(now()) 
+  complexity String
 }
 
 model Feedback {
   id Int @id @default(autoincrement())
-  title String 
+  type String
   product String
   medium String
   doneAt DateTime @default(now())

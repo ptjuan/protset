@@ -10,14 +10,13 @@ CREATE TABLE "User" (
 CREATE TABLE "Client" (
     "cc" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
-    CONSTRAINT "Client_pkey" PRIMARY KEY ("cc")
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 -- CreateTable
 CREATE TABLE "Informative" (
     "id" SERIAL NOT NULL,
+    "type" TEXT NOT NULL,
     "product" TEXT NOT NULL,
     "medium" TEXT NOT NULL,
     "doneAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -28,6 +27,7 @@ CREATE TABLE "Informative" (
 -- CreateTable
 CREATE TABLE "NonMonetaryTransactional" (
     "id" SERIAL NOT NULL,
+    "type" TEXT NOT NULL,
     "product" TEXT NOT NULL,
     "medium" TEXT NOT NULL,
     "doneAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -38,6 +38,7 @@ CREATE TABLE "NonMonetaryTransactional" (
 -- CreateTable
 CREATE TABLE "MonetaryTransactional" (
     "id" SERIAL NOT NULL,
+    "type" TEXT NOT NULL,
     "product" TEXT NOT NULL,
     "medium" TEXT NOT NULL,
     "category" TEXT NOT NULL,
@@ -49,11 +50,13 @@ CREATE TABLE "MonetaryTransactional" (
 -- CreateTable
 CREATE TABLE "Service" (
     "id" SERIAL NOT NULL,
+    "type" TEXT NOT NULL,
     "product" TEXT NOT NULL,
     "medium" TEXT NOT NULL,
     "clientt" TEXT NOT NULL,
     "user" INTEGER NOT NULL,
     "doneAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "complexity" TEXT NOT NULL,
 
     CONSTRAINT "Service_pkey" PRIMARY KEY ("id")
 );
@@ -61,7 +64,7 @@ CREATE TABLE "Service" (
 -- CreateTable
 CREATE TABLE "Feedback" (
     "id" SERIAL NOT NULL,
-    "title" TEXT NOT NULL,
+    "type" TEXT NOT NULL,
     "product" TEXT NOT NULL,
     "medium" TEXT NOT NULL,
     "doneAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -78,7 +81,7 @@ CREATE UNIQUE INDEX "User_id_key" ON "User"("id");
 CREATE UNIQUE INDEX "User_cc_key" ON "User"("cc");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "MonetaryTransactional_category_key" ON "MonetaryTransactional"("category");
+CREATE UNIQUE INDEX "Client_cc_key" ON "Client"("cc");
 
 -- AddForeignKey
 ALTER TABLE "Service" ADD CONSTRAINT "Service_user_fkey" FOREIGN KEY ("user") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
