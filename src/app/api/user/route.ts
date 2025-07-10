@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
     
     try {
-        const users = await prisma.user.findMany();
+        const users = await prisma.User.findMany();
         return NextResponse.json(users);
     } catch (error) {
         console.log(error)
@@ -15,7 +15,7 @@ export async function GET() {
 export async function POST(request: Request) {
     try {
         const {cc, name} = await request.json();
-        const newUser = await prisma.user.create({
+        const newUser = await prisma.User.create({
             data: {
                 cc: cc,
                 name: name, 
@@ -23,7 +23,7 @@ export async function POST(request: Request) {
         })
         return NextResponse.json(newUser);
     } catch (error) {
-        console.log(error)
+        console.log({error})
     }
 }
 

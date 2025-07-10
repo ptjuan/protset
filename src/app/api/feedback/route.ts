@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
     try {
-        const feedbacks = await prisma.feedback.findMany();
+        const feedbacks = await prisma.Feedback.findMany();
         return NextResponse.json(feedbacks);
     } catch(error) {
         console.log(error)
@@ -12,10 +12,10 @@ export async function GET() {
 
 export async function POST(request: any) {
     try {
-        const {title, product, medium, description, score} = await request.json();
-        const newFeedback = await prisma.feedback.create({
+        const {type, product, medium, description, score} = await request.json();
+        const newFeedback = await prisma.Feedback.create({
             data: {
-                title: title,
+                type: type,
                 product: product,
                 medium: medium,
                 description: description,

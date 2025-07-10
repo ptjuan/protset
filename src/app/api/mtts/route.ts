@@ -3,8 +3,8 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
     try {
-        const ntransactions = await prisma.NonMonetaryTransactional.findMany();
-        return NextResponse.json(ntransactions);
+        const transactions = await prisma.MonetaryTransactional.findMany();
+        return NextResponse.json(transactions);
     } catch(error) {
         console.log(error)
     }
@@ -12,15 +12,16 @@ export async function GET() {
 
 export async function POST(request: any) {
     try {
-        const {type, product, medium} = await request.json();
-        const newTransaction = await prisma.NonMonetaryTransactional.create({
+        const {type, product, medium, category} = await request.json();
+        const newMTransaction = await prisma.MonetaryTransactional.create({
             data: {
                 type: type,
                 product: product,
-                medium: medium
+                medium: medium,
+                category: category
             }
         })
-        return NextResponse.json(newTransaction);
+        return NextResponse.json(newMTransaction);
     } catch (error){
         console.log({error})
     }

@@ -18,3 +18,8 @@ Agregada base de datos con relación para posteriormente rellenar y tener con qu
 - Implementacion de todas las tarjetas informativas (en modelo)
 - Agregada una relacion entre tablas para futuras pruebas
 - pequeño avance en la api
+
+## 10 / 7 / 2025 5:45 p.m
+
+-Prototipo funcionando 
+-cambios en api
